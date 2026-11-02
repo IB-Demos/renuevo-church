@@ -22,6 +22,9 @@ export async function registerHombresDeAltar(formData: FormData) {
       telefono: formData.get('telefono'),
       email: formData.get('email') || undefined,
       tallaCamiseta: formData.get('tallaCamiseta') || undefined,
+      tutorNombre: formData.get('tutorNombre') || undefined,
+      tutorContacto: formData.get('tutorContacto') || undefined,
+      consentimientoLegal: formData.get('consentimientoLegal') === 'on',
     }
 
     await client.create(data)

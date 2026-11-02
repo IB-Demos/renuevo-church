@@ -132,9 +132,44 @@ export default function TaxForm({ locale }: { locale: string }) {
           )}
         </AnimatePresence>
 
+        <div className="pt-2">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              required
+              className="mt-1 h-4 w-4 rounded border-stone-600 bg-stone-800 text-accent-gold focus:ring-accent-gold"
+            />
+            <span className="text-xs text-stone-300 leading-normal">
+              {isEs ? (
+                <>
+                  Autorizo el tratamiento de mis datos personales para la emisión de mi comprobante fiscal conforme a la{' '}
+                  <a href={`/${locale}/politicas`} target="_blank" rel="noopener noreferrer" className="text-accent-gold hover:underline font-bold">
+                    Política de Privacidad
+                  </a>{' '}
+                  y{' '}
+                  <a href={`/${locale}/terminos`} target="_blank" rel="noopener noreferrer" className="text-accent-gold hover:underline font-bold">
+                    Términos
+                  </a>.
+                </>
+              ) : (
+                <>
+                  I authorize the processing of my information for issuing my tax receipt pursuant to Renuevo Church's{' '}
+                  <a href={`/${locale}/politicas`} target="_blank" rel="noopener noreferrer" className="text-accent-gold hover:underline font-bold">
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a href={`/${locale}/terminos`} target="_blank" rel="noopener noreferrer" className="text-accent-gold hover:underline font-bold">
+                    Terms
+                  </a>.
+                </>
+              )}
+            </span>
+          </label>
+        </div>
+
         <button 
           type="submit"
-          className="w-full mt-10 py-5 bg-accent-gold text-primary-navy font-bold text-sm tracking-widest uppercase hover:bg-white transition-colors rounded-xl shadow-lg shadow-accent-gold/20"
+          className="w-full mt-6 py-5 bg-accent-gold text-primary-navy font-bold text-sm tracking-widest uppercase hover:bg-white transition-colors rounded-xl shadow-lg shadow-accent-gold/20 focus-visible:ring-2 focus-visible:ring-white outline-none cursor-pointer"
         >
           {isEs ? 'Enviar Declaración' : 'Submit Declaration'}
         </button>

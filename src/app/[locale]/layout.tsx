@@ -5,7 +5,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
-import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -18,6 +17,8 @@ export const metadata: Metadata = {
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HombresDeAltarPopup from '@/components/HombresDeAltarPopup';
+import CookieConsentBanner from '@/components/layout/CookieConsentBanner';
+import ConsentAwareAnalytics from '@/components/layout/ConsentAwareAnalytics';
 
 export default async function RootLayout({
   children,
@@ -34,7 +35,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-stone-50 text-stone-900 flex flex-col min-h-screen selection:bg-blue-600 selection:text-white`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-stone-50 text-stone-900 flex flex-col min-h-screen selection:bg-accent-gold selection:text-white`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Navbar />
           <HombresDeAltarPopup />
@@ -42,8 +43,9 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer />
+          <CookieConsentBanner />
         </NextIntlClientProvider>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        {process.env.NEXT_PUBLIC_GA_ID && <ConsentAwareAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );

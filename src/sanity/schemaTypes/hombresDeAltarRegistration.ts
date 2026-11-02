@@ -57,5 +57,20 @@ export const hombresDeAltarRegistrationType = defineType({
         ],
       },
     }),
+    defineField({
+      name: 'tutorNombre',
+      title: 'Nombre del Padre o Tutor (Menores de 18)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'tutorContacto',
+      title: 'Contacto del Padre o Tutor',
+      type: 'string',
+    }),
+    defineField({
+      name: 'consentimientoLegal',
+      title: 'Consentimiento de Políticas y Términos',
+      type: 'boolean',
+    }),
   ],
 })

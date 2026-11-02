@@ -1,4 +1,6 @@
 import CinematicHeader from '@/components/layout/CinematicHeader';
+import Link from 'next/link';
+import { Shield, FileText, CheckCircle2, MapPin, Phone, Mail } from 'lucide-react';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const { locale } = await params;
@@ -10,75 +12,133 @@ export default async function TermsPage({params}: {params: Promise<{locale: stri
   const isEs = locale === 'es';
 
   return (
-    <div className="bg-primary-sand min-h-screen pb-32 text-primary-navy">
+    <div className="bg-primary-sand min-h-screen pb-32 text-primary-navy selection:bg-accent-gold selection:text-white">
       <CinematicHeader 
         title={isEs ? 'Términos y Condiciones' : 'Terms and Conditions'}
-        subtitle={isEs ? 'Acuerdo legal para el uso de nuestro sitio web.' : 'Legal agreement for the use of our website.'}
+        subtitle={isEs ? 'Acuerdo legal, normas de convivencia y lineamientos de uso de nuestra plataforma.' : 'Legal agreement, community standards, and terms of use for our platform.'}
         backgroundImageUrl="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
       />
 
       <section className="container mx-auto px-6 max-w-4xl py-20 relative z-10">
-        <div className="bg-white p-10 md:p-16 rounded-2xl shadow-xl border border-stone-200">
+        <div className="bg-white p-10 md:p-16 rounded-3xl shadow-xl border border-stone-200">
           
-          <p className="text-stone-500 mb-8 italic text-sm">
-            {isEs ? 'Última actualización: 22 de Julio de 2026' : 'Last updated: July 22, 2026'}
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 mb-8 border-b border-stone-200 gap-4">
+            <div>
+              <span className="text-xs uppercase tracking-widest font-bold text-accent-gold block mb-1">
+                {isEs ? 'Estatuto de Uso y Participación' : 'Terms of Use & Participation'}
+              </span>
+              <p className="text-stone-500 italic text-sm">
+                {isEs ? 'Última actualización: Noviembre de 2026' : 'Last updated: November 2026'}
+              </p>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-bold">
+              <FileText className="w-4 h-4 text-accent-gold" />
+              <span>{isEs ? 'Estatuto Institucional' : 'Institutional Charter'}</span>
+            </div>
+          </div>
 
-          <div className="prose prose-stone max-w-none text-stone-700 space-y-6">
+          <div className="prose prose-stone max-w-none text-stone-700 space-y-8 leading-relaxed">
             
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '1. Aceptación de los Términos' : '1. Acceptance of Terms'}</h2>
-            <p>
-              {isEs 
-                ? 'Al acceder y utilizar el sitio web de Renuevo Church, aceptas estar sujeto a estos Términos y Condiciones, así como a todas las leyes y regulaciones aplicables. Si no estás de acuerdo con alguno de estos términos, tienes prohibido usar o acceder a este sitio.'
-                : 'By accessing and using the Renuevo Church website, you agree to be bound by these Terms and Conditions, as well as all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.'}
-            </p>
+            {/* 1. Aceptación */}
+            <div>
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">1.</span> {isEs ? 'Aceptación de los Términos' : 'Acceptance of Terms'}
+              </h2>
+              <p>
+                {isEs 
+                  ? 'Al acceder a este portal web, participar en nuestras transmisiones, registrarse para eventos o realizar aportaciones voluntarias, usted acepta estar sujeto a estos Términos y Condiciones, a nuestra Política de Privacidad y a las leyes aplicables en el Estado de Arizona, EE. UU.'
+                  : 'By accessing this portal, viewing broadcasts, registering for church events, or making voluntary donations, you agree to be bound by these Terms and Conditions, our Privacy Policy, and all applicable laws in the State of Arizona, USA.'}
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '2. Uso de la Licencia' : '2. Use License'}</h2>
-            <p>
-              {isEs 
-                ? 'Se concede permiso para descargar temporalmente una copia de los materiales (información, videos o audios) en el sitio web de Renuevo Church para visualización transitoria personal y no comercial. Esta es una concesión de licencia, no una transferencia de título.'
-                : 'Permission is granted to temporarily download one copy of the materials (information, videos, or audio) on the Renuevo Church website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.'}
-            </p>
-            <p>
-              {isEs 
-                ? 'Bajo esta licencia no puedes: modificar o copiar los materiales; usarlos para ningún propósito comercial; intentar descompilar o aplicar ingeniería inversa a cualquier software en el sitio; ni transferir los materiales a otra persona o "espejar" los materiales en cualquier otro servidor.'
-                : 'Under this license you may not: modify or copy the materials; use them for any commercial purpose; attempt to decompile or reverse engineer any software on the site; or transfer the materials to another person or "mirror" the materials on any other server.'}
-            </p>
+            {/* 2. Licencia de Uso */}
+            <div>
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">2.</span> {isEs ? 'Propiedad Intelectual y Licencia Ministerial' : 'Intellectual Property & Ministerial License'}
+              </h2>
+              <p>
+                {isEs 
+                  ? 'Los sermones, devocionales, guías de estudio, audios y materiales audiovisuales producidos por Renuevo Church se distribuyen libremente para edificación personal, espiritual y familiar no comercial. Queda estrictamente prohibida su reventa, comercialización o tergiversación con fines de lucro.'
+                  : 'Sermons, devotionals, study guides, audio tracks, and audiovisual materials produced by Renuevo Church are provided freely for personal, spiritual, and family non-commercial edification. Reselling, commercial distribution, or misleading exploitation for profit is strictly prohibited.'}
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '3. Limitaciones' : '3. Limitations'}</h2>
-            <p>
-              {isEs 
-                ? 'En ningún caso Renuevo Church o sus proveedores serán responsables de ningún daño (incluyendo, sin limitación, daños por pérdida de datos o interrupción del negocio) que surja del uso o la incapacidad de usar los materiales en el sitio de Renuevo Church.'
-                : 'In no event shall Renuevo Church or its suppliers be liable for any damages (including, without limitation, damages for loss of data or business interruption) arising out of the use or inability to use the materials on the Renuevo Church site.'}
-            </p>
+            {/* 3. Eventos y Congresos */}
+            <div>
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">3.</span> {isEs ? 'Participación en Eventos y Congresos' : 'Events & Congress Participation'}
+              </h2>
+              <p>
+                {isEs 
+                  ? 'Los registros a eventos (como el Congreso de Varones Hombres de Altar) son de carácter abierto o con cuotas transparentes de recuperación. Renuevo Church promueve un ambiente de hermandad, respeto y edificación en Cristo. Nos reservamos el derecho de admisión ante conductas que quebranten la seguridad o el bienestar de la congregación.'
+                  : 'Registrations for church events (such as the Men\'s Congress) are open or based on transparent recovery fees. Renuevo Church maintains a sacred environment of brotherhood, peace, and mutual respect. We reserve the right of admission to safeguard congregational safety and spiritual wellbeing.'}
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '4. Precisión de los Materiales' : '4. Accuracy of Materials'}</h2>
-            <p>
-              {isEs 
-                ? 'Los materiales que aparecen en el sitio web de Renuevo Church pueden incluir errores técnicos, tipográficos o fotográficos. No garantizamos que ninguno de los materiales en nuestro sitio web sea preciso, completo o actual. Renuevo Church puede realizar cambios en los materiales en cualquier momento sin previo aviso.'
-                : 'The materials appearing on the Renuevo Church website could include technical, typographical, or photographic errors. We do not warrant that any of the materials on our website are accurate, complete, or current. Renuevo Church may make changes to the materials at any time without notice.'}
-            </p>
+            {/* 4. Donaciones y Transparencia */}
+            <div>
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">4.</span> {isEs ? 'Donaciones Voluntarias y Cero Cobros Ocultos' : 'Voluntary Giving & Zero Hidden Fees'}
+              </h2>
+              <p>
+                {isEs 
+                  ? 'En Renuevo Church no existen membresías forzosas ni cobros ocultos por asistir a nuestros servicios congregacionales. Las donaciones, diezmos y ofrendas son contribuciones cristianas voluntarias en cumplimiento con 2 Corintios 9:7. Los donantes pueden solicitar comprobantes de deducción de impuestos mediante nuestro formulario oficial.'
+                  : 'Renuevo Church charges zero mandatory membership fees or hidden costs to attend our congregational services. Donations, tithes, and offerings are voluntary Christian gifts in accordance with 2 Corinthians 9:7. Donors may request tax-deductible contribution receipts through our official portal.'}
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '5. Enlaces' : '5. Links'}</h2>
-            <p>
-              {isEs 
-                ? 'Renuevo Church no ha revisado todos los sitios vinculados a su sitio web y no es responsable de los contenidos de ningún sitio vinculado. La inclusión de cualquier enlace no implica respaldo por parte de Renuevo Church del sitio. El uso de cualquier sitio web vinculado es bajo el propio riesgo del usuario.'
-                : 'Renuevo Church has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Renuevo Church of the site. Use of any such linked website is at the user\'s own risk.'}
-            </p>
+            {/* 5. Reembolsos */}
+            <div id="reembolsos" className="p-6 rounded-2xl bg-stone-50 border border-stone-200">
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">5.</span> {isEs ? 'Política de Reembolsos y Cancelaciones' : 'Refund & Cancellation Policy'}
+              </h2>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>
+                    <strong>{isEs ? 'Eventos con costo:' : 'Ticketed Events:'}</strong>{' '}
+                    {isEs 
+                      ? 'Reembolso del 100% notificando a administración con al menos 7 días de anticipación al evento. Los boletos son 100% transferibles en cualquier momento sin cargo.'
+                      : '100% full refund upon notifying administration at least 7 days prior to event commencement. Registrations are 100% transferable anytime free of charge.'}
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>
+                    <strong>{isEs ? 'Donaciones electrónicas:' : 'Electronic Donations:'}</strong>{' '}
+                    {isEs 
+                      ? 'En caso de error involuntario de captura o duplicidad de transacción bancaria, se reintegrará la suma reportada dentro de los primeros 30 días posteriores al cargo.'
+                      : 'In the case of unintentional capture errors or duplicate banking transactions, disputed charges reported within 30 days will be promptly corrected and refunded.'}
+                  </span>
+                </li>
+              </ul>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '6. Modificaciones' : '6. Modifications'}</h2>
-            <p>
-              {isEs 
-                ? 'Podemos revisar estos Términos y Condiciones para nuestro sitio web en cualquier momento sin previo aviso. Al usar este sitio web, aceptas estar sujeto a la versión actual de estos términos.'
-                : 'We may revise these Terms and Conditions for our website at any time without notice. By using this website you are agreeing to be bound by the then-current version of these terms.'}
-            </p>
+            {/* 6. Ley y Jurisdicción */}
+            <div>
+              <h2 className="text-2xl font-serif font-bold text-primary-navy mb-3 flex items-center gap-3">
+                <span className="text-accent-gold">6.</span> {isEs ? 'Ley Aplicable y Resolución Fraternal' : 'Governing Law & Christian Dispute Resolution'}
+              </h2>
+              <p>
+                {isEs 
+                  ? 'Estos términos se rigen por las leyes del Estado de Arizona y de los Estados Unidos de América. Animamos a cualquier miembro o usuario a buscar primeramente la resolución fraternal de cualquier diferencia de acuerdo con los principios bíblicos de conciliación y paz.'
+                  : 'These terms are governed by the laws of the State of Arizona and the United States of America. We encourage all participants to seek fraternal and peaceful reconciliation in accordance with biblical principles of mediation.'}
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-serif font-bold text-primary-navy">{isEs ? '7. Ley Aplicable' : '7. Governing Law'}</h2>
-            <p>
-              {isEs 
-                ? 'Estos términos y condiciones se rigen e interpretan de acuerdo con las leyes del estado de Arizona, Estados Unidos de América. Tú te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales en ese estado o ubicación.'
-                : 'These terms and conditions are governed by and construed in accordance with the laws of the State of Arizona, United States of America. You irrevocably submit to the exclusive jurisdiction of the courts in that State or location.'}
-            </p>
+            {/* 7. Datos de Contacto */}
+            <div className="bg-stone-100 p-6 rounded-2xl not-italic text-stone-700 space-y-2 text-sm border border-stone-200">
+              <p className="font-bold text-primary-navy text-base">Renuevo Church</p>
+              <p className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-accent-gold" /> 6331 W Lamar Rd, Glendale, AZ 85301
+              </p>
+              <p className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-accent-gold" /> (480) 440-0396
+              </p>
+              <p className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-accent-gold" /> contacto@renuevochurch.org
+              </p>
+            </div>
 
           </div>
         </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 
@@ -51,15 +53,31 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="text-sm flex flex-col md:flex-row justify-between items-center">
-          <p>© {new Date().getFullYear()} Arasue Horizon. {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href={`/${locale}/politicas`} className="hover:text-white transition">
+        <div className="text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+          <p>© {new Date().getFullYear()} Hagane Softworks. {locale === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
+          <div className="flex flex-wrap gap-6 items-center">
+            <Link href={`/${locale}/politicas`} className="hover:text-accent-gold transition">
               {locale === 'es' ? 'Privacidad' : 'Privacy'}
             </Link>
-            <Link href={`/${locale}/terminos`} className="hover:text-white transition">
+            <Link href={`/${locale}/terminos`} className="hover:text-accent-gold transition">
               {locale === 'es' ? 'Términos' : 'Terms'}
             </Link>
+            <Link href={`/${locale}/politicas#reembolsos`} className="hover:text-accent-gold transition">
+              {locale === 'es' ? 'Reembolsos' : 'Refunds'}
+            </Link>
+            <Link href={`/${locale}/baja`} className="hover:text-accent-gold transition">
+              {locale === 'es' ? 'Cancelar Suscripción' : 'Unsubscribe'}
+            </Link>
+            <button 
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+                }
+              }}
+              className="text-stone-400 hover:text-accent-gold transition text-sm cursor-pointer"
+            >
+              {locale === 'es' ? 'Cookies' : 'Cookies'}
+            </button>
           </div>
         </div>
       </div>

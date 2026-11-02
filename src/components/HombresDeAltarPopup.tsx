@@ -17,7 +17,18 @@ export default function HombresDeAltarPopup() {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 2000);
-    return () => clearTimeout(timer);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const closePopup = () => {
@@ -33,12 +44,16 @@ export default function HombresDeAltarPopup() {
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[70] w-[calc(100%-2rem)] md:w-96 overflow-hidden rounded-3xl bg-white text-primary-navy shadow-2xl border border-stone-200"
+          role="dialog"
+          aria-modal="false"
+          aria-label={locale === 'es' ? 'Invitación al Congreso de Varones' : "Men's Congress Invitation"}
         >
           <div className="relative">
             {/* Close Button */}
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 transition-colors hover:bg-stone-200 hover:text-stone-700"
+              className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-500 transition-colors hover:bg-stone-200 hover:text-stone-700 focus-visible:ring-2 focus-visible:ring-accent-gold outline-none"
+              aria-label={locale === 'es' ? 'Cerrar ventana emergente' : 'Close popup'}
             >
               <X className="h-4 w-4" />
             </button>
