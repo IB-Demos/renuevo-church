@@ -42,7 +42,7 @@ export const hombresDeAltarRegistrationType = defineType({
     }),
     defineField({
       name: 'tallaCamiseta',
-      title: 'Talla de Camiseta',
+      title: 'Talla de Camiseta (Opcional)',
       type: 'string',
       options: {
         list: [
@@ -56,7 +56,6 @@ export const hombresDeAltarRegistrationType = defineType({
           { title: '4XL', value: '4XL' },
         ],
       },
-      validation: (rule) => rule.required(),
     }),
   ],
 })

@@ -197,20 +197,20 @@ export default function HombresDeAltarPage() {
                   <div className="flex flex-col gap-2 mt-2">
                     <label htmlFor="tallaCamiseta" className="text-sm font-semibold text-stone-700 flex items-center gap-2">
                       <Shirt className="h-4 w-4 text-stone-500" />
-                      {locale === 'es' ? 'Talla de Camiseta' : 'T-Shirt Size'} <span className="text-red-500">*</span>
+                      {locale === 'es' ? 'Talla de Camiseta' : 'T-Shirt Size'} <span className="text-stone-400 font-normal ml-1">({locale === 'es' ? 'opcional' : 'optional'})</span>
                     </label>
                     <p className="text-xs text-stone-500 mb-1">
                       {locale === 'es' 
-                        ? 'Durante el congreso habrá camisetas a la venta. Nos encantaría saber tu talla para tenerlas disponibles.' 
-                        : 'There will be t-shirts for sale during the congress. We would love to know your size to have them available.'}
+                        ? 'Durante el congreso habrá camisetas a la venta. Esta pregunta es únicamente con fines informativos y de estimación para tener disponibilidad de tallas.' 
+                        : 'There will be t-shirts for sale during the congress. This question is strictly for informational and estimation purposes to ensure size availability.'}
                     </p>
                     <select
                       id="tallaCamiseta"
                       name="tallaCamiseta"
-                      required
+                      defaultValue=""
                       className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold/50 focus:border-accent-gold transition-all appearance-none cursor-pointer"
                     >
-                      <option value="" disabled selected>{locale === 'es' ? 'Selecciona una talla' : 'Select a size'}</option>
+                      <option value="">{locale === 'es' ? 'Selecciona una talla (opcional)' : 'Select a size (optional)'}</option>
                       <option value="XS">XS</option>
                       <option value="S">S</option>
                       <option value="M">M</option>
